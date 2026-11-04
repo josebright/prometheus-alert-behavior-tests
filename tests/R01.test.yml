@@ -270,6 +270,55 @@
           "exp_alerts": []
         }
       ]
+    },
+    {
+      "name": "interrupted_persistence",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.01 0.10 0.01 0.10 0.10 0.10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
     }
   ]
 }
