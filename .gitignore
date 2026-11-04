@@ -1,0 +1,19 @@
+# Secrets: never store credentials in research artifacts.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.aws/
+secrets/
+credentials
+__pycache__/
+
+# Local tools, editor settings, caches and execution archives.
+.*/
+.DS_Store
+*.py[cod]
+/results/
+/STAGE1_REPORT.md
+/prompts/
+/responses/

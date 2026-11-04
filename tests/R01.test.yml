@@ -1,0 +1,275 @@
+# Synthetic fixtures; JSON is valid YAML. One shared oracle for all rules.
+{
+  "rule_files": [
+    "rule.yml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "healthy",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.01 0.02 0.03 0.04 0.01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "brief_spike",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.01 0.10 0.01 0.01 0.01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "sustained",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.01 0.10 0.10 0.10 0.10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "recovery",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.01 0.10 0.10 0.10 0.05 0.01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "two_services",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.01 0.10 0.10 0.10 0.10"
+        },
+        {
+          "series": "service_error_ratio{service=\"web\"}",
+          "values": "0.01 0.01 0.01 0.01 0.01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "strict_equality",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": "0.05 0.05 0.05 0.05 0.05"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    }
+  ]
+}
