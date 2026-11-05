@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "R01",
+      "interval": "1m",
+      "rules": [
+        {
+          "alert": "ServiceErrorRatioHigh",
+          "expr": "service_error_ratio > 0.05",
+          "for": "2m",
+          "annotations": {
+            "summary": "constant explanation"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "groups": [
+    {
+      "name": "R06",
+      "interval": "1m",
+      "rules": [
+        {
+          "alert": "ServiceErrorRatioHighRetained",
+          "expr": "service_error_ratio > 0.05",
+          "keep_firing_for": "3m"
+        }
+      ]
+    }
+  ]
+}

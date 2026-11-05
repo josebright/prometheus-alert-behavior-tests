@@ -1,0 +1,556 @@
+{
+  "notice": "Synthetic infrastructure controls, not model responses or model-performance evidence. Expected outcomes fixed before execution.",
+  "controls": [
+    {
+      "id": "R01_reference",
+      "task": "R01",
+      "path": "controls/stage3a/R01_reference.yml",
+      "kind": "infrastructure_control",
+      "description": "Unchanged reference; ordinary YAML for R01, JSON YAML for R02\u2013R06",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass",
+        "behavior_execution": "pass"
+      }
+    },
+    {
+      "id": "R02_reference",
+      "task": "R02",
+      "path": "controls/stage3a/R02_reference.yml",
+      "kind": "infrastructure_control",
+      "description": "Unchanged reference; ordinary YAML for R01, JSON YAML for R02\u2013R06",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass",
+        "behavior_execution": "pass"
+      }
+    },
+    {
+      "id": "R03_reference",
+      "task": "R03",
+      "path": "controls/stage3a/R03_reference.yml",
+      "kind": "infrastructure_control",
+      "description": "Unchanged reference; ordinary YAML for R01, JSON YAML for R02\u2013R06",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass",
+        "behavior_execution": "pass"
+      }
+    },
+    {
+      "id": "R04_reference",
+      "task": "R04",
+      "path": "controls/stage3a/R04_reference.yml",
+      "kind": "infrastructure_control",
+      "description": "Unchanged reference; ordinary YAML for R01, JSON YAML for R02\u2013R06",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass",
+        "behavior_execution": "pass"
+      }
+    },
+    {
+      "id": "R05_reference",
+      "task": "R05",
+      "path": "controls/stage3a/R05_reference.yml",
+      "kind": "infrastructure_control",
+      "description": "Unchanged reference; ordinary YAML for R01, JSON YAML for R02\u2013R06",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass",
+        "behavior_execution": "pass"
+      }
+    },
+    {
+      "id": "R06_reference",
+      "task": "R06",
+      "path": "controls/stage3a/R06_reference.yml",
+      "kind": "infrastructure_control",
+      "description": "Unchanged reference; ordinary YAML for R01, JSON YAML for R02\u2013R06",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass",
+        "behavior_execution": "pass"
+      }
+    },
+    {
+      "id": "equivalent",
+      "task": "R01",
+      "path": "controls/stage3a/equivalent.yml",
+      "kind": "infrastructure_control",
+      "description": "Equivalent expression without matching reference text",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass"
+      }
+    },
+    {
+      "id": "interval_60s",
+      "task": "R01",
+      "path": "controls/stage3a/interval_60s.yml",
+      "kind": "infrastructure_control",
+      "description": "Equivalent one-minute duration spelling",
+      "expected": {
+        "exit_code": 0,
+        "overall": "pass"
+      }
+    },
+    {
+      "id": "malformed",
+      "task": "R01",
+      "path": "controls/stage3a/malformed.yml",
+      "kind": "infrastructure_control",
+      "description": "Malformed YAML",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "response_format": "fail"
+      }
+    },
+    {
+      "id": "duplicate_yaml",
+      "task": "R01",
+      "path": "controls/stage3a/duplicate_yaml.yml",
+      "kind": "infrastructure_control",
+      "description": "Duplicate YAML mapping key",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "response_format": "fail"
+      }
+    },
+    {
+      "id": "duplicate_json",
+      "task": "R01",
+      "path": "controls/stage3a/duplicate_json.yml",
+      "kind": "infrastructure_control",
+      "description": "Duplicate JSON mapping key",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "response_format": "fail"
+      }
+    },
+    {
+      "id": "fenced",
+      "task": "R01",
+      "path": "controls/stage3a/fenced.yml",
+      "kind": "infrastructure_control",
+      "description": "Markdown-fenced valid inner YAML, left unedited",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "response_format": "fail"
+      }
+    },
+    {
+      "id": "unsafe_tag",
+      "task": "R01",
+      "path": "controls/stage3a/unsafe_tag.yml",
+      "kind": "infrastructure_control",
+      "description": "Unsafe constructor tag; must never execute",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "response_format": "fail"
+      }
+    },
+    {
+      "id": "empty",
+      "task": "R01",
+      "path": "controls/stage3a/empty.yml",
+      "kind": "infrastructure_control",
+      "description": "Empty original response",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "response_format": "fail"
+      }
+    },
+    {
+      "id": "wrong_name",
+      "task": "R01",
+      "path": "controls/stage3a/wrong_name.yml",
+      "kind": "infrastructure_control",
+      "description": "Wrong alert name",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail",
+        "required_identity": "fail",
+        "behavioral": "fail"
+      }
+    },
+    {
+      "id": "extra_rule",
+      "task": "R01",
+      "path": "controls/stage3a/extra_rule.yml",
+      "kind": "infrastructure_control",
+      "description": "Extra alert invisible to expected-name firing assertions",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail",
+        "behavior_execution": "pass",
+        "behavioral": "pass"
+      }
+    },
+    {
+      "id": "annotation",
+      "task": "R01",
+      "path": "controls/stage3a/annotation.yml",
+      "kind": "infrastructure_control",
+      "description": "Extra constant annotation, metadata only",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "metadata": "fail",
+        "behavioral": "pass",
+        "required_identity": "pass",
+        "only_symptoms": [
+          "metadata_only"
+        ]
+      }
+    },
+    {
+      "id": "annotation_braces_quotes",
+      "task": "R01",
+      "path": "controls/stage3a/annotation_braces_quotes.yml",
+      "kind": "infrastructure_control",
+      "description": "Extra constant annotation, metadata only",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "metadata": "fail",
+        "behavioral": "pass",
+        "required_identity": "pass",
+        "only_symptoms": [
+          "metadata_only"
+        ]
+      }
+    },
+    {
+      "id": "missing_service",
+      "task": "R01",
+      "path": "controls/stage3a/missing_service.yml",
+      "kind": "infrastructure_control",
+      "description": "Aggregation removes required service identity",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "required_identity": "fail",
+        "behavioral": "unevaluable_identity"
+      }
+    },
+    {
+      "id": "extra_label",
+      "task": "R01",
+      "path": "controls/stage3a/extra_label.yml",
+      "kind": "infrastructure_control",
+      "description": "Extra constant label; never removed before execution",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "required_identity": "fail",
+        "behavioral": "pass"
+      }
+    },
+    {
+      "id": "wrong_interval",
+      "task": "R01",
+      "path": "controls/stage3a/wrong_interval.yml",
+      "kind": "infrastructure_control",
+      "description": "Explicit group interval violates one-minute contract",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail"
+      }
+    },
+    {
+      "id": "wrong_metric",
+      "task": "R01",
+      "path": "controls/stage3a/wrong_metric.yml",
+      "kind": "infrastructure_control",
+      "description": "Unsupplied metric selected",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail",
+        "behavioral": "fail"
+      }
+    },
+    {
+      "id": "rate",
+      "task": "R01",
+      "path": "controls/stage3a/rate.yml",
+      "kind": "infrastructure_control",
+      "description": "Prohibited gauge rate and range",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail"
+      }
+    },
+    {
+      "id": "offset",
+      "task": "R01",
+      "path": "controls/stage3a/offset.yml",
+      "kind": "infrastructure_control",
+      "description": "Prohibited offset",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail"
+      }
+    },
+    {
+      "id": "evaluation_error",
+      "task": "R04",
+      "path": "controls/stage3a/evaluation_error.yml",
+      "kind": "infrastructure_control",
+      "description": "Legal expression with ambiguous many-to-many matching at evaluation",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "candidate_evaluation_failure",
+        "behavioral": "unevaluable"
+      }
+    },
+    {
+      "id": "mutation_R01_no_for",
+      "task": "R01",
+      "path": "controls/stage3a/mutation_R01_no_for.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/mutations/no_for.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R01_inclusive",
+      "task": "R01",
+      "path": "controls/stage3a/mutation_R01_inclusive.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/mutations/inclusive.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R02_threshold_500",
+      "task": "R02",
+      "path": "controls/stage3a/mutation_R02_threshold_500.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R02/threshold_500.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R02_wait_2m",
+      "task": "R02",
+      "path": "controls/stage3a/mutation_R02_wait_2m.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R02/wait_2m.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R03_average",
+      "task": "R03",
+      "path": "controls/stage3a/mutation_R03_average.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R03/average.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R03_retained_instance",
+      "task": "R03",
+      "path": "controls/stage3a/mutation_R03_retained_instance.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R03/retained_instance.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R03_instance_handoff_reset",
+      "task": "R03",
+      "path": "controls/stage3a/mutation_R03_instance_handoff_reset.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R03/instance_handoff_reset.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R04_or",
+      "task": "R04",
+      "path": "controls/stage3a/mutation_R04_or.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R04/or.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R04_volume_strict",
+      "task": "R04",
+      "path": "controls/stage3a/mutation_R04_volume_strict.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R04/volume_strict.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R04_cross_service",
+      "task": "R04",
+      "path": "controls/stage3a/mutation_R04_cross_service.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R04/cross_service.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R05_no_filter",
+      "task": "R05",
+      "path": "controls/stage3a/mutation_R05_no_filter.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R05/no_filter.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R05_no_environment_label",
+      "task": "R05",
+      "path": "controls/stage3a/mutation_R05_no_environment_label.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R05/no_environment_label.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure",
+        "required_identity": "fail",
+        "behavioral": "pass"
+      }
+    },
+    {
+      "id": "mutation_R06_no_retention",
+      "task": "R06",
+      "path": "controls/stage3a/mutation_R06_no_retention.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R06/no_retention.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R06_retention_1m",
+      "task": "R06",
+      "path": "controls/stage3a/mutation_R06_retention_1m.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R06/retention_1m.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "mutation_R06_no_initial_wait",
+      "task": "R06",
+      "path": "controls/stage3a/mutation_R06_no_initial_wait.yml",
+      "kind": "infrastructure_control",
+      "description": "Exact copy of deliberate existing mutation rules/stage2/R06/no_initial_wait.yml",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "behavior_execution": "assertion_failure"
+      }
+    },
+    {
+      "id": "no_rules",
+      "task": "R01",
+      "path": "controls/stage3a/no_rules.yml",
+      "kind": "infrastructure_control",
+      "description": "Missing required alert rule",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail",
+        "required_identity": "fail"
+      }
+    },
+    {
+      "id": "constant_expression",
+      "task": "R01",
+      "path": "controls/stage3a/constant_expression.yml",
+      "kind": "infrastructure_control",
+      "description": "Expression does not use the supplied metric",
+      "expected": {
+        "exit_code": 1,
+        "overall": "candidate_failure",
+        "syntax": "pass",
+        "structural_contract": "fail",
+        "behavioral": "fail"
+      }
+    }
+  ]
+}

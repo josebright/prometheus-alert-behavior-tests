@@ -17,3 +17,6 @@ __pycache__/
 /STAGE1_REPORT.md
 /prompts/
 /responses/
+
+# Local review archives contain raw execution evidence.
+/stage*-review.zip

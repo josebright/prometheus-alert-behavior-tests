@@ -1,0 +1,15 @@
+{
+  "groups": [
+    {
+      "name": "R05",
+      "interval": "1m",
+      "rules": [
+        {
+          "alert": "ProductionServiceErrorRatioHigh",
+          "expr": "max by (service) (service_error_ratio{environment=\"production\"}) > 0.05",
+          "for": "2m"
+        }
+      ]
+    }
+  ]
+}

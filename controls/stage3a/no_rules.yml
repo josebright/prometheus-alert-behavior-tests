@@ -1,0 +1,9 @@
+{
+  "groups": [
+    {
+      "name": "R01",
+      "interval": "1m",
+      "rules": []
+    }
+  ]
+}

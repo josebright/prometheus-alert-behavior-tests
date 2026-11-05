@@ -1,0 +1,15 @@
+{
+  "groups": [
+    {
+      "name": "R03",
+      "interval": "1m",
+      "rules": [
+        {
+          "alert": "ServiceAnyInstanceErrorHigh",
+          "expr": "max by (service, instance) (service_instance_error_ratio) > 0.05",
+          "for": "2m"
+        }
+      ]
+    }
+  ]
+}
