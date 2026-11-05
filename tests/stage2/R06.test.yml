@@ -1,0 +1,720 @@
+{
+  "rule_files": [
+    "rule.yml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "Healthy",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Strict equality",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".05 .05 .05 .05 .05"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Spike never fires or gains retention",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Sustained with no recovery",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Full retention and exact expiry",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .05 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "6m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "7m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "8m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Renewed breach during retention",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .01 .10 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "6m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "7m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "8m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "9m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Breach exactly at expiry boundary",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .01 .01 .01 .10 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "6m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "7m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "8m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "9m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "11m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "New wait after actual clearance",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .01 .01 .01 .01 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "6m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "7m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "8m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "9m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Independent service timers",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_error_ratio{service=\"web\"}",
+          "values": ".01 .01 .10 .10 .10 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            },
+            {
+              "exp_labels": {
+                "service": "web"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            },
+            {
+              "exp_labels": {
+                "service": "web"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "6m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            },
+            {
+              "exp_labels": {
+                "service": "web"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "7m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "web"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "8m",
+          "alertname": "ServiceErrorRatioHighRetained",
+          "exp_alerts": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "notice": "Synthetic infrastructure validation, not sampled model outputs.",
+  "tasks": {
+    "R02": {
+      "alertname": "ServiceLatencyHigh",
+      "required_labels": [
+        "alertname",
+        "service"
+      ],
+      "scenario_rows": [
+        "| Healthy | api: .10 .20 .30 .40 .20 .10 | 0\u20135m: none |",
+        "| Strict equality / units | api: .50 .50 .50 .50 .50 .50 | 0\u20135m: none |",
+        "| Too brief | api: .10 .80 .80 .10 .10 .10 | 0\u20135m: none |",
+        "| Boundary then recovery | api: .10 .80 .80 .80 .80 .50 | 0\u20133m: none; 4m: api; 5m: none |",
+        "| Interrupted wait | api: .10 .80 .10 .80 .80 .80 .80 | 0\u20135m: none; 6m: api |",
+        "| Service isolation | api: .10 .80 .80 .80 .80 .80; web: .20 .20 .20 .20 .20 .20 | 0\u20133m: none; 4\u20135m: api only |"
+      ],
+      "scenarios": 6,
+      "assertions": 37
+    },
+    "R03": {
+      "alertname": "ServiceAnyInstanceErrorHigh",
+      "required_labels": [
+        "alertname",
+        "service"
+      ],
+      "scenario_rows": [
+        "| All healthy | api/a: .01 .01 .01 .01 .01; api/b: .02 .02 .02 .02 .02 | 0\u20134m: none |",
+        "| Strict equality | api/a: .05 .05 .05 .05 .05; api/b: .01 .01 .01 .01 .01 | 0\u20134m: none |",
+        "| One breach; average would hide it | api/a: .01 .09 .09 .09 .09; api/b: .01 .01 .01 .01 .01 | 0\u20132m: none; 3\u20134m: api |",
+        "| Multiple breaching instances | api/a: .01 .10 .10 .10 .10; api/b: .01 .20 .20 .20 .20 | 0\u20132m: none; 3\u20134m: api exactly once |",
+        "| Instance handoff without interruption | api/a: .01 .10 .01 .01 .01; api/b: .01 .01 .10 .10 .10 | 0\u20132m: none; 3\u20134m: api |",
+        "| Service-wide interruption | api/a: .01 .10 .01 .10 .10 .10; api/b: .01 .01 .01 .01 .01 .01 | 0\u20134m: none; 5m: api |",
+        "| Recovery of all instances | api/a: .01 .10 .10 .10 .05 .01; api/b: .01 .01 .01 .01 .01 .01 | 0\u20132m: none; 3m: api; 4\u20135m: none |",
+        "| Separate services, reused instance name | api/a: .01 .10 .10 .10 .10; web/a: .01 .01 .01 .01 .01 | 0\u20132m: none; 3\u20134m: api only |"
+      ],
+      "scenarios": 8,
+      "assertions": 42
+    },
+    "R04": {
+      "alertname": "ServiceErrorRatioHighWithTraffic",
+      "required_labels": [
+        "alertname",
+        "service"
+      ],
+      "scenario_rows": [
+        "| Low error despite enough traffic | api: (.01,200) (.01,200) (.01,200) (.01,200) (.01,200) | 0\u20134m: none |",
+        "| High error, insufficient traffic | api: (.10,99) (.10,99) (.10,99) (.10,99) (.10,99) | 0\u20134m: none |",
+        "| Zero traffic | api: (.10,0) (.10,0) (.10,0) (.10,0) (.10,0) | 0\u20134m: none |",
+        "| Error equality excluded | api: (.05,200) (.05,200) (.05,200) (.05,200) (.05,200) | 0\u20134m: none |",
+        "| Volume equality included; recovery by traffic | api: (.01,200) (.10,100) (.10,100) (.10,100) (.10,99) (.10,200) | 0\u20132m: none; 3m: api; 4\u20135m: none |",
+        "| Recovery by error ratio | api: (.01,200) (.10,200) (.10,200) (.10,200) (.05,200) | 0\u20132m: none; 3m: api; 4m: none |",
+        "| Interrupted conjunction | api: (.01,200) (.10,200) (.10,99) (.10,200) (.10,200) (.10,200) | 0\u20134m: none; 5m: api |",
+        "| Conditions belong to different services | api: (.10,50) (.10,50) (.10,50) (.10,50) (.10,50); web: (.01,200) (.01,200) (.01,200) (.01,200) (.01,200) | 0\u20134m: none |",
+        "| One qualifying service | api: (.01,200) (.10,200) (.10,200) (.10,200) (.10,200); web: (.01,50) (.10,50) (.10,50) (.10,50) (.10,50) | 0\u20132m: none; 3\u20134m: api only |"
+      ],
+      "scenarios": 9,
+      "assertions": 47
+    },
+    "R05": {
+      "alertname": "ProductionServiceErrorRatioHigh",
+      "required_labels": [
+        "alertname",
+        "service",
+        "environment"
+      ],
+      "scenario_rows": [
+        "| Both healthy | api/P: .01 .01 .01 .01 .01; api/S: .01 .01 .01 .01 .01 | 0\u20134m: none |",
+        "| Staging breaches only | api/P: .01 .01 .01 .01 .01; api/S: .10 .10 .10 .10 .10 | 0\u20134m: none |",
+        "| Production boundary; staging healthy | api/P: .01 .10 .10 .10 .10; api/S: .01 .01 .01 .01 .01 | 0\u20132m: none; 3\u20134m: api/P |",
+        "| Both breach, production recovers | api/P: .01 .10 .10 .10 .05 .01; api/S: .10 .10 .10 .10 .10 .10 | 0\u20132m: none; 3m: api/P; 4\u20135m: none |",
+        "| Production equality excluded | api/P: .05 .05 .05 .05 .05; api/S: .10 .10 .10 .10 .10 | 0\u20134m: none |",
+        "| Production spike only | api/P: .01 .10 .01 .01 .01; api/S: .10 .10 .10 .10 .10 | 0\u20134m: none |",
+        "| Staging cannot bridge an interruption | api/P: .01 .10 .01 .10 .10 .10; api/S: .10 .10 .10 .10 .10 .10 | 0\u20134m: none; 5m: api/P |",
+        "| Separate production services | api/P: .01 .10 .10 .10 .10; web/P: .01 .01 .01 .01 .01; api/S: .10 .10 .10 .10 .10; web/S: .10 .10 .10 .10 .10 | 0\u20132m: none; 3\u20134m: api/P only |"
+      ],
+      "scenarios": 8,
+      "assertions": 42
+    },
+    "R06": {
+      "alertname": "ServiceErrorRatioHighRetained",
+      "required_labels": [
+        "alertname",
+        "service"
+      ],
+      "scenario_rows": [
+        "| Healthy | api: .01 .01 .01 .01 .01 | 0\u20134m: none |",
+        "| Strict equality | api: .05 .05 .05 .05 .05 | 0\u20134m: none |",
+        "| Spike never fires or gains retention | api: .01 .10 .01 .01 .01 .01 | 0\u20135m: none |",
+        "| Sustained with no recovery | api: .01 .10 .10 .10 .10 .10 | 0\u20132m: none; 3\u20135m: api |",
+        "| Full retention and exact expiry | api: .01 .10 .10 .10 .05 .01 .01 .01 .01 | 0\u20132m: none; 3\u20136m: api; 7\u20138m: none |",
+        "| Renewed breach during retention | api: .01 .10 .10 .10 .01 .10 .01 .01 .01 .01 | 0\u20132m: none; 3\u20138m: api; 9m: none |",
+        "| Breach exactly at expiry boundary | api: .01 .10 .10 .10 .01 .01 .01 .10 .01 .01 .01 .01 | 0\u20132m: none; 3\u201310m: api; 11m: none |",
+        "| New wait after actual clearance | api: .01 .10 .10 .10 .01 .01 .01 .01 .10 .10 .10 | 0\u20132m: none; 3\u20136m: api; 7\u20139m: none; 10m: api |",
+        "| Independent service timers | api: .01 .10 .10 .10 .01 .01 .01 .01 .01; web: .01 .01 .10 .10 .10 .01 .01 .01 .01 | 0\u20132m: none; 3m: api; 4\u20136m: api and web; 7m: web; 8m: none |"
+      ],
+      "scenarios": 9,
+      "assertions": 73
+    }
+  },
+  "candidates": [
+    {
+      "id": "R02-reference",
+      "task": "R02",
+      "kind": "reference",
+      "path": "rules/stage2/R02/reference.yml",
+      "targeted_obligations": [],
+      "description": "Reference for the reviewed requirement."
+    },
+    {
+      "id": "R02-threshold_500",
+      "task": "R02",
+      "kind": "mutation",
+      "path": "rules/stage2/R02/threshold_500.yml",
+      "targeted_obligations": [
+        "threshold"
+      ],
+      "description": "Mistakes the 500 ms threshold for 500 seconds."
+    },
+    {
+      "id": "R02-wait_2m",
+      "task": "R02",
+      "kind": "mutation",
+      "path": "rules/stage2/R02/wait_2m.yml",
+      "targeted_obligations": [
+        "timing"
+      ],
+      "description": "Waits two instead of three minutes."
+    },
+    {
+      "id": "R02-extra_annotation",
+      "task": "R02",
+      "kind": "metadata_control",
+      "path": "rules/stage2/R02/extra_annotation.yml",
+      "targeted_obligations": [],
+      "description": "Reference with only one extra constant annotation."
+    },
+    {
+      "id": "R03-reference",
+      "task": "R03",
+      "kind": "reference",
+      "path": "rules/stage2/R03/reference.yml",
+      "targeted_obligations": [],
+      "description": "Reference for the reviewed requirement."
+    },
+    {
+      "id": "R03-average",
+      "task": "R03",
+      "kind": "mutation",
+      "path": "rules/stage2/R03/average.yml",
+      "targeted_obligations": [
+        "grouping",
+        "threshold"
+      ],
+      "description": "Uses an average rather than any-instance condition."
+    },
+    {
+      "id": "R03-retained_instance",
+      "task": "R03",
+      "kind": "mutation",
+      "path": "rules/stage2/R03/retained_instance.yml",
+      "targeted_obligations": [
+        "grouping",
+        "timing"
+      ],
+      "description": "Retains each instance as a separate alert identity and waiting timer."
+    },
+    {
+      "id": "R03-instance_handoff_reset",
+      "task": "R03",
+      "kind": "mutation",
+      "path": "rules/stage2/R03/instance_handoff_reset.yml",
+      "targeted_obligations": [
+        "timing",
+        "grouping"
+      ],
+      "description": "Selects one breaching instance per service but keeps its instance identity; handoff restarts the wait. Also violates output-label contract."
+    },
+    {
+      "id": "R04-reference",
+      "task": "R04",
+      "kind": "reference",
+      "path": "rules/stage2/R04/reference.yml",
+      "targeted_obligations": [],
+      "description": "Reference for the reviewed requirement."
+    },
+    {
+      "id": "R04-or",
+      "task": "R04",
+      "kind": "mutation",
+      "path": "rules/stage2/R04/or.yml",
+      "targeted_obligations": [
+        "threshold"
+      ],
+      "description": "Either metric can trigger instead of requiring their conjunction."
+    },
+    {
+      "id": "R04-volume_strict",
+      "task": "R04",
+      "kind": "mutation",
+      "path": "rules/stage2/R04/volume_strict.yml",
+      "targeted_obligations": [
+        "threshold"
+      ],
+      "description": "Excludes the required inclusive volume boundary."
+    },
+    {
+      "id": "R04-cross_service",
+      "task": "R04",
+      "kind": "mutation",
+      "path": "rules/stage2/R04/cross_service.yml",
+      "targeted_obligations": [
+        "grouping"
+      ],
+      "description": "Any qualifying volume series can enable a different service."
+    },
+    {
+      "id": "R05-reference",
+      "task": "R05",
+      "kind": "reference",
+      "path": "rules/stage2/R05/reference.yml",
+      "targeted_obligations": [],
+      "description": "Reference for the reviewed requirement."
+    },
+    {
+      "id": "R05-no_filter",
+      "task": "R05",
+      "kind": "mutation",
+      "path": "rules/stage2/R05/no_filter.yml",
+      "targeted_obligations": [
+        "grouping",
+        "threshold"
+      ],
+      "description": "Allows staging to fire."
+    },
+    {
+      "id": "R05-no_environment_label",
+      "task": "R05",
+      "kind": "mutation",
+      "path": "rules/stage2/R05/no_environment_label.yml",
+      "targeted_obligations": [],
+      "description": "Removes the required environment label from production alerts."
+    },
+    {
+      "id": "R06-reference",
+      "task": "R06",
+      "kind": "reference",
+      "path": "rules/stage2/R06/reference.yml",
+      "targeted_obligations": [],
+      "description": "Reference for the reviewed requirement."
+    },
+    {
+      "id": "R06-no_retention",
+      "task": "R06",
+      "kind": "mutation",
+      "path": "rules/stage2/R06/no_retention.yml",
+      "targeted_obligations": [
+        "recovery"
+      ],
+      "description": "Clears immediately without retention."
+    },
+    {
+      "id": "R06-retention_1m",
+      "task": "R06",
+      "kind": "mutation",
+      "path": "rules/stage2/R06/retention_1m.yml",
+      "targeted_obligations": [
+        "recovery"
+      ],
+      "description": "Retains for one instead of three minutes."
+    },
+    {
+      "id": "R06-no_initial_wait",
+      "task": "R06",
+      "kind": "mutation",
+      "path": "rules/stage2/R06/no_initial_wait.yml",
+      "targeted_obligations": [
+        "timing"
+      ],
+      "description": "Fires immediately, including on a brief spike."
+    }
+  ]
+}

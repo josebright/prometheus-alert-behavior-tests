@@ -1,0 +1,15 @@
+{
+  "groups": [
+    {
+      "name": "R04",
+      "interval": "1m",
+      "rules": [
+        {
+          "alert": "ServiceErrorRatioHighWithTraffic",
+          "expr": "(service_error_ratio > 0.05) or on (service) (service_requests_last_minute >= 100)",
+          "for": "2m"
+        }
+      ]
+    }
+  ]
+}

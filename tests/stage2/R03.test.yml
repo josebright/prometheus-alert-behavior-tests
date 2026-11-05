@@ -1,0 +1,416 @@
+{
+  "rule_files": [
+    "rule.yml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "All healthy",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".02 .02 .02 .02 .02"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Strict equality",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".05 .05 .05 .05 .05"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "One breach; average would hide it",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .09 .09 .09 .09"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Multiple breaching instances",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".01 .20 .20 .20 .20"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Instance handoff without interruption",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .10 .01 .01 .01"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".01 .01 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Service-wide interruption",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .10 .01 .10 .10 .10"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".01 .01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Recovery of all instances",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .10 .10 .10 .05 .01"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"b\"}",
+          "values": ".01 .01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Separate services, reused instance name",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_instance_error_ratio{service=\"api\",instance=\"a\"}",
+          "values": ".01 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_instance_error_ratio{service=\"web\",instance=\"a\"}",
+          "values": ".01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceAnyInstanceErrorHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

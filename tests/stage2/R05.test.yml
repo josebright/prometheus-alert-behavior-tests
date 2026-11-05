@@ -1,0 +1,402 @@
+{
+  "rule_files": [
+    "rule.yml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "Both healthy",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Staging breaches only",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Production boundary; staging healthy",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".01 .01 .01 .01 .01"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api",
+                "environment": "production"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api",
+                "environment": "production"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Both breach, production recovers",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .10 .10 .10 .05 .01"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api",
+                "environment": "production"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Production equality excluded",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".05 .05 .05 .05 .05"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Production spike only",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .10 .01 .01 .01"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Staging cannot bridge an interruption",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .10 .01 .10 .10 .10"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api",
+                "environment": "production"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Separate production services",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"production\"}",
+          "values": ".01 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_error_ratio{service=\"web\",environment=\"production\"}",
+          "values": ".01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_error_ratio{service=\"api\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_error_ratio{service=\"web\",environment=\"staging\"}",
+          "values": ".10 .10 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api",
+                "environment": "production"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ProductionServiceErrorRatioHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api",
+                "environment": "production"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

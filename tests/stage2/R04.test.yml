@@ -1,0 +1,438 @@
+{
+  "rule_files": [
+    "rule.yml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "Low error despite enough traffic",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "200 200 200 200 200"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "High error, insufficient traffic",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".10 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "99 99 99 99 99"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Zero traffic",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".10 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "0 0 0 0 0"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Error equality excluded",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".05 .05 .05 .05 .05"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "200 200 200 200 200"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Volume equality included; recovery by traffic",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "200 100 100 100 99 200"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Recovery by error ratio",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .05"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "200 200 200 200 200"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Interrupted conjunction",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "200 200 99 200 200 200"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Conditions belong to different services",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".10 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "50 50 50 50 50"
+        },
+        {
+          "series": "service_error_ratio{service=\"web\"}",
+          "values": ".01 .01 .01 .01 .01"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"web\"}",
+          "values": "200 200 200 200 200"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "One qualifying service",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_error_ratio{service=\"api\"}",
+          "values": ".01 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"api\"}",
+          "values": "200 200 200 200 200"
+        },
+        {
+          "series": "service_error_ratio{service=\"web\"}",
+          "values": ".01 .10 .10 .10 .10"
+        },
+        {
+          "series": "service_requests_last_minute{service=\"web\"}",
+          "values": "50 50 50 50 50"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceErrorRatioHighWithTraffic",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

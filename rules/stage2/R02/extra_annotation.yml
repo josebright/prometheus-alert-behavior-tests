@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "R02",
+      "interval": "1m",
+      "rules": [
+        {
+          "alert": "ServiceLatencyHigh",
+          "expr": "service_latency_p95_seconds > 0.5",
+          "for": "3m",
+          "annotations": {
+            "summary": "Constant review annotation"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "rule_files": [
+    "rule.yml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "Healthy",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_latency_p95_seconds{service=\"api\"}",
+          "values": ".10 .20 .30 .40 .20 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Strict equality / units",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_latency_p95_seconds{service=\"api\"}",
+          "values": ".50 .50 .50 .50 .50 .50"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Too brief",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_latency_p95_seconds{service=\"api\"}",
+          "values": ".10 .80 .80 .10 .10 .10"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Boundary then recovery",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_latency_p95_seconds{service=\"api\"}",
+          "values": ".10 .80 .80 .80 .80 .50"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "Interrupted wait",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_latency_p95_seconds{service=\"api\"}",
+          "values": ".10 .80 .10 .80 .80 .80 .80"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "6m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Service isolation",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "service_latency_p95_seconds{service=\"api\"}",
+          "values": ".10 .80 .80 .80 .80 .80"
+        },
+        {
+          "series": "service_latency_p95_seconds{service=\"web\"}",
+          "values": ".20 .20 .20 .20 .20 .20"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "0m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "1m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "3m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "4m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        },
+        {
+          "eval_time": "5m",
+          "alertname": "ServiceLatencyHigh",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "service": "api"
+              },
+              "exp_annotations": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
