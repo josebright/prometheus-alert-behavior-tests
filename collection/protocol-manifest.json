@@ -1,0 +1,288 @@
+{
+  "status": "draft_not_frozen",
+  "frozen": false,
+  "collection_authorized": false,
+  "created_at": "2026-11-05T12:16:49.733941+01:00",
+  "timezone": "Africa/Lagos",
+  "current_commit": "c9f298e30478bba8de8fa43bcd60802aba0a2140",
+  "working_tree_at_start": "clean",
+  "generation_requests_made": 0,
+  "prompts": {
+    "R01": {
+      "path": "prompts/collection-draft/R01.txt",
+      "sha256": "72ff37feacd388ea833c3ab62937f3054714b49c54a16796e6278f4ef3797347",
+      "bytes": 4855
+    },
+    "R02": {
+      "path": "prompts/collection-draft/R02.txt",
+      "sha256": "1fa4caaea488e5ca3c6a4e175befdb4bbdafa98afa46ec7cb80a423f601eb671",
+      "bytes": 4941
+    },
+    "R03": {
+      "path": "prompts/collection-draft/R03.txt",
+      "sha256": "5d03a6ab34b5d47c88fe78c57830c1ff66a85e45c03f4a3b39f8926e9768b9c9",
+      "bytes": 5195
+    },
+    "R04": {
+      "path": "prompts/collection-draft/R04.txt",
+      "sha256": "b5925971cb1bbc464e2524f6690a5b5c9a407c955b38d76c4605e29ea2343189",
+      "bytes": 5360
+    },
+    "R05": {
+      "path": "prompts/collection-draft/R05.txt",
+      "sha256": "f1eb39db8bb939cb7ebab2f4be5e9612614aa65886ada258e5def0ef42324d17",
+      "bytes": 5155
+    },
+    "R06": {
+      "path": "prompts/collection-draft/R06.txt",
+      "sha256": "2170d78b3522bc41dfd750a1a5e2c99dc62517ec28e1293b96c7843491bc5c9d",
+      "bytes": 5625
+    }
+  },
+  "validated_baseline": {
+    "record": "results/stage3a/20261105T082902.000765Z",
+    "summary_sha256": "90165e514d65551c93354efeb74c1b92336fe1542a355441b243b9667f7eb357",
+    "controls_matched": 42,
+    "unit_tests_passed": 15,
+    "input_sha256": {
+      "STUDY_PLAN.md": "c4805818ad07782a04cdb370b504a28a436972d5593c9c928eb1a90120eecfeb",
+      "prometheus-image.txt": "a6c239552abec609d81bb1f69ecb0995ab4e552385ca15866ea0fb57974eb0f9",
+      "requirements-stage3a.txt": "57e57e749affab980c8203535c3a8a47c5762fa4a8d118b3e3e3d571eb5f3ff2",
+      "scripts/score_candidate.py": "68fc4e2c93914b5ebfc92447cae6d88fc25ce8900fc544b2edd8f44276e98522",
+      "requirements/R01.md": "cce4a200750e05c56256d2550ba06d34637da8f426b8cf432e8966ab010e8373",
+      "requirements/R02.md": "6e55ba2a82bd8e47d8aa81a1eefbc4ecde9360fab5eb55191b48f27b272cd9e3",
+      "requirements/R03.md": "58f66fc1e302a72df568fe94934094ab66808589b8504d7b2663c9b6392fdaa2",
+      "requirements/R04.md": "904468670bae052154455fa5ccaef134dc44bf08a534ccb6d11bceedaa686a1c",
+      "requirements/R05.md": "e0c8bae7887d0443eec0aed1a794f833ed48c378eb3e74c129bab46e2c5afe05",
+      "requirements/R06.md": "7c5abba617337f577716c2699dbecbc4f0ce562235e5fc0068a7da3f85c017b2",
+      "requirements/SEMANTICS.md": "a09e0679901564a544c1a765d83d9e0c50db6063b908517d3f841d9634e1a2d4",
+      "scripts/stage3a/build_controls.py": "d7354128e2ce2d8efa23f4c05e36f36f5701d009b67bd5a065b8db7902b5154a",
+      "scripts/stage3a/contracts.py": "15043a914d43a5df0bd93154adff209d27ee18c202afeb4c56f3ef51181b6581",
+      "scripts/stage3a/diagnostics.py": "76675798c9eb60d1a20c19308d8e10eefb9786a7f6de396ef57a793de3574268",
+      "tests/R01.test.yml": "a34d60a1ca7b7568bba489f0aaba15eab3ec37fc304a017de34905834706a9a1",
+      "tests/stage2/R02.test.yml": "92fba2a1e12a0253f1a773d8a65c7667303bfc472902b8101e91391d7e938520",
+      "tests/stage2/R03.test.yml": "22e922b3be0b9ec65fc740c8477ee8e58b3d89fde2111da377e81e0405a40f06",
+      "tests/stage2/R04.test.yml": "aec561b562e6e59edb82aaf5a2e815497eb81cb188d00601ee0f9330f7af8810",
+      "tests/stage2/R05.test.yml": "ed72f1bf794d6b2133a8764a8798df4a0f28ecc12646d4c7a61192800e80b284",
+      "tests/stage2/R06.test.yml": "7fe41835edb02d5d73219c1bb553ca4adc9dcd805e2410dede053a25c8c99799",
+      "controls/stage3a/mutation_R03_instance_handoff_reset.yml": "998e103e7f5c2832b2b8172c03a6f12a817605affc4f318b6f49e25a12e36987",
+      "controls/stage3a/mutation_R01_inclusive.yml": "5509fbd70211d4f7a121c872a852dc637249b82f219d956ae38c2e987c0f5098",
+      "controls/stage3a/mutation_R06_no_initial_wait.yml": "ddc8e8c96acf2d3a79f003f60da52dc550aa72fd70ba342a28e96c48dd8d6c62",
+      "controls/stage3a/mutation_R02_wait_2m.yml": "c5ed0227fe9a83255f1d147ab4cd25521c4e18b273fba66920f2c32e8549c087",
+      "controls/stage3a/mutation_R05_no_environment_label.yml": "0a473b9d490a5c7082761d6a10f3bee9924b7b2e9872419e69ac4175be35608d",
+      "controls/stage3a/equivalent.yml": "6e68f12595da7305c8dfffccff4514ab11e7b450e8a170f978ca8f33163be0ca",
+      "controls/stage3a/mutation_R04_cross_service.yml": "ff8eca7f8aaeafbef9e5f0a55ca1a0468f9d50156b2e05dd37b938e900d5654d",
+      "controls/stage3a/mutation_R06_retention_1m.yml": "0d34878d2a3ef47db04e5278b6883f63104dadb78a87a20ef2ab8fe1959f2a08",
+      "controls/stage3a/no_rules.yml": "7ddd258cdcd1bcd54bb6157a870f720d32e948448b468e311b74b81ec9a05a83",
+      "controls/stage3a/wrong_metric.yml": "5526a997b0cae54ec84618425e331e5f8604e9d45b527b94cda02403b03d1196",
+      "controls/stage3a/unsafe_tag.yml": "2a3bd53263e6673f1f335da2496197acc351a14fba8669f58e412b899a99fd67",
+      "controls/stage3a/mutation_R03_average.yml": "871350bdf3d6f591a72939b2ef72187270d649fb388e5616bcdc740d187d6d0d",
+      "controls/stage3a/annotation.yml": "98d3854e0f96ba6dc97c69fdb9db3fb1c4b01018db6d03b587be639c00f3c8a6",
+      "controls/stage3a/fenced.yml": "93aac966d1d2f2458a8d287561c655e98322effabb0d2c24cfab3a3ae1c6131c",
+      "controls/stage3a/extra_rule.yml": "5b84f73652df2ddc3e1ea866780f415c832f4a4b2c478ab50ba53da2f21caa9f",
+      "controls/stage3a/mutation_R06_no_retention.yml": "24802a707ccd6c27ffec1ff433c6b70fe08b922947b28f56bb8e6cd1a559282d",
+      "controls/stage3a/R04_reference.yml": "b6f53901b63dd2d0f9110dee863ef2c7a6e06ea00f351c114606d96c525ce213",
+      "controls/stage3a/wrong_name.yml": "69410bdbcf9374e84ad4b873a2af7aa841c87c65a2498141b4b7b03859da9fdc",
+      "controls/stage3a/duplicate_yaml.yml": "0cd1bb816ad0cdb428f7c4395a782bb6d6bbb86514e254bbeb67ab41c2c4953c",
+      "controls/stage3a/rate.yml": "48fe87d1ac78533a38d611fc5436f891ed70a19f3ad4b6971501fdfeb67fda2c",
+      "controls/stage3a/malformed.yml": "4ff8acb99aeb3efb3c52b8df6a80060f0e41e0cacd70102277e588668cba268d",
+      "controls/stage3a/annotation_braces_quotes.yml": "785f7f76cadcb34016fa21747933ca679b291c6807d376ae425b9594b4a25d38",
+      "controls/stage3a/mutation_R01_no_for.yml": "6af0a14b5bd4aba5c6d6f5a402fab939643a66466db28f8d2b87aa7c7c3d7ce4",
+      "controls/stage3a/R03_reference.yml": "87c4c027ceb1077e910ae41e4ad597dddd1ad52216e5a0de08645b6b4e4708f5",
+      "controls/stage3a/evaluation_error.yml": "5a11895d9cb2f1a8224933493a7fe8c0bcd1e906dbfd246359cdcd0fc639dd69",
+      "controls/stage3a/interval_60s.yml": "ecacfac22fb8a66fb37d3a25414500ac137d0b70dd26f3f209b269e1413f4d8b",
+      "controls/stage3a/extra_label.yml": "b267c506789e203aaa032d33ee11d63cd74bd158b61212fe5f8694a5bd1b0437",
+      "controls/stage3a/offset.yml": "fed08c1a9168176a2a05cabbc18e9c37240d5abefccf3df38dc2e675e99299e5",
+      "controls/stage3a/mutation_R04_volume_strict.yml": "19392354509c2cb24d2b1927236e7d80ba49de3a35332a1401cb814676ac4fb0",
+      "controls/stage3a/R02_reference.yml": "92c3c247a39fa2c7257ebe8cf8852d814cd34ec20be59f419050aca6d3443ff1",
+      "controls/stage3a/README.md": "dbc4c579d128d85d84862a57ebf3db4fa186a79b5c38b944f37fa3965b3ac7ba",
+      "controls/stage3a/empty.yml": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "controls/stage3a/R06_reference.yml": "6349c58c60b5df53cbfe5ab5c2f073a22054d99b222e7c0821b369bbf49b761a",
+      "controls/stage3a/mutation_R05_no_filter.yml": "13ec13b2507cefcf0be3f777e254b8778b163759f1a3aec85d841f60884164b7",
+      "controls/stage3a/mutation_R04_or.yml": "ef8c702fb434b672a93aec3608ceb835efeb5e5df35df2ea29086a3935edd619",
+      "controls/stage3a/mutation_R02_threshold_500.yml": "e9717256b0a1564208b8125df79cef69a08d4baea89a971637764f4d42209b6d",
+      "controls/stage3a/wrong_interval.yml": "50fa8c53ed9a609eb054bb6b33ffcf151bc82dba23ee58c0020ca1865d21367f",
+      "controls/stage3a/constant_expression.yml": "c9f59cbf7ec81a1c8944413c9641aba9a2943dae19903c3346043aa94904b9b9",
+      "controls/stage3a/manifest.json": "319352ba7a2d149602fc317458c91edbad66f0fe5152fbcebd9d5907ecc2dc53",
+      "controls/stage3a/R01_reference.yml": "cb6ccf34f7a2a027282d78936f4116582702503e1b5f46f9803ff59d339f5610",
+      "controls/stage3a/R05_reference.yml": "d50797b4775c87bbd576dde596d3def6f65b64f64b3f8c57a238d349361f849e",
+      "controls/stage3a/duplicate_json.yml": "b70c26b3dbf84491b1be0a99ff329f8603a96f8e6d861ad16eb92dd1286d3720",
+      "controls/stage3a/missing_service.yml": "01b42d4daf4bcf71a07080cc802afa8e55b499d9e7a75b50aecd951c528fba0a",
+      "controls/stage3a/mutation_R03_retained_instance.yml": "61d2d7e3e282a738fa532fc411d576be67a57f04afa4de5a2b2a171164cf9fb8",
+      "scripts/validate_stage3a.py": "ac1e01fd268d671b39fd8a1f8bc847743aafbd8746c7a9a2ad0341e517172782",
+      "tests/test_stage3a.py": "ccacd0013bb84d6d5625793183c1351062ed6b210956f0a6f03b322b931bcfad"
+    },
+    "match_at_protocol_preparation": true,
+    "preserved_preexisting_files_verified": 977,
+    "versions_source": "results/stage3a/20261105T082902.000765Z/candidates/R01_reference/20261105T082902.456693Z/summary.json",
+    "versions_source_sha256": "9d06557800ac130bedb7adacd0eaea2109f63a498700efb5c64f6055c77812d1",
+    "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "dependencies": {
+      "PyYAML": "6.0.3",
+      "promql-parser": "0.11.0"
+    },
+    "prometheus_image_digest": "prom/prometheus@sha256:fa3302279710be2f21a8301ec17a8b4f2301fd829bd113839b3b6b02b6f191a2",
+    "image_id": "sha256:345c03f8738a25e86baee35b1ee84cf1007036cbe75f51a2fa8965dd91374b9a",
+    "image_platform": "linux/arm64",
+    "promtool_version": "promtool, version 3.15.1 (branch: HEAD, revision: bae3eced0a5369e050e83ea73bc381d7c4b1a719)\n  build user:       root@03bc6b0f3ef7\n  build date:       20261021-13:34:13\n  go version:       go1.27.3\n  platform:         linux/arm64\n  tags:             netgo,builtinassets\n",
+    "docker_versions_from_validation": {
+      "Client": {
+        "Version": "29.8.2",
+        "ApiVersion": "1.56",
+        "DefaultAPIVersion": "1.56",
+        "GitCommit": "7fc2dff",
+        "GoVersion": "go1.26.8",
+        "Os": "darwin",
+        "Arch": "arm64",
+        "BuildTime": "Wed Sep 30 19:32:03 2026",
+        "Context": "desktop-linux"
+      },
+      "Server": {
+        "Platform": {
+          "Name": "Docker Desktop 4.95.0 (242831)"
+        },
+        "Version": "29.8.2",
+        "ApiVersion": "1.56",
+        "MinAPIVersion": "1.40",
+        "Os": "linux",
+        "Arch": "arm64",
+        "Components": [
+          {
+            "Name": "Engine",
+            "Version": "29.8.2",
+            "Details": {
+              "ApiVersion": "1.56",
+              "Arch": "arm64",
+              "BuildTime": "Wed Sep 30 19:31:50 2026",
+              "Experimental": "false",
+              "GitCommit": "8af9fe3",
+              "GoVersion": "go1.26.8",
+              "KernelVersion": "7.0.14-linuxkit",
+              "MinAPIVersion": "1.40",
+              "Module": "github.com/moby/moby/v2",
+              "ModuleVersion": "v2.0.0+unknown",
+              "Os": "linux"
+            }
+          },
+          {
+            "Name": "containerd",
+            "Version": "v2.3.6",
+            "Details": {
+              "GitCommit": "ee2735368117d2eb259779949d5e75cdafec9761"
+            }
+          },
+          {
+            "Name": "runc",
+            "Version": "1.5.1",
+            "Details": {
+              "GitCommit": "v1.5.1-0-g8f2685a4"
+            }
+          },
+          {
+            "Name": "docker-init",
+            "Version": "0.19.0",
+            "Details": {
+              "GitCommit": "de40ad0"
+            }
+          }
+        ],
+        "GitCommit": "8af9fe3",
+        "GoVersion": "go1.26.8",
+        "KernelVersion": "7.0.14-linuxkit",
+        "BuildTime": "2026-09-30T19:31:50.000000000+00:00"
+      }
+    }
+  },
+  "current_local_observation": {
+    "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "dependencies": {
+      "PyYAML": "6.0.3",
+      "promql-parser": "0.11.0"
+    },
+    "note": "No new Docker execution; Docker/promtool versions above come from the retained validated run."
+  },
+  "baseline_additional_sha256": {
+    ".gitignore": "8f80da1b0f332a3f9562c94404afffd7b4fbed11aeec6c9f53bc1a1baa52ddf6",
+    "STUDY_PLAN.md": "c4805818ad07782a04cdb370b504a28a436972d5593c9c928eb1a90120eecfeb",
+    "STAGE3A_VALIDATION.md": "a0c403c73645f79858fa0e28cfcdbe28edcfdaf8d75fe61a1ec0cca71a8580ee",
+    "scripts/package_stage3a.py": "4ce8839c452a7101845c0016321b51fb88c53ba03f85c902e9860609fccdbc60"
+  },
+  "draft_artifact_sha256": {
+    "COLLECTION_PLAN.md": "75d4e4065565b928d1c938f05d0c96cfb99f68ddb9a86ae901f5ad1dfe244841",
+    "COLLECTION_READINESS.md": "8134c0ab06b52a1b532099d55bde45e2593d5be06cfa464dda59a573fdc7c974",
+    "collection/COMMON_OUTPUT_CONTRACT.txt": "b65a13222875a903a21c3d5968862e4369ab35b0e6edf9987824cc3afc537429",
+    "collection/settings.pending.json": "a26eae37e7ba589b98099c2727f507d3ed37ff82c7b3c95f6917279f0478f131",
+    "collection/slots.json": "8ba2fa33e7340529910721948e72f71efd896fb0535c9a3bf259a8e0a7c07528",
+    "collection/PROMPT_AUDIT.md": "88e725471198d9283aa21cd06bdb74891543e2374276efaac6244fdd6d816fcc",
+    "scripts/check_collection_protocol.py": "8467c81e8f59fde26a719f1ed020628bb2884e3ccb3355afbb945397289e002d",
+    "prompts/collection-draft/R01.txt": "72ff37feacd388ea833c3ab62937f3054714b49c54a16796e6278f4ef3797347",
+    "prompts/collection-draft/R02.txt": "1fa4caaea488e5ca3c6a4e175befdb4bbdafa98afa46ec7cb80a423f601eb671",
+    "prompts/collection-draft/R03.txt": "5d03a6ab34b5d47c88fe78c57830c1ff66a85e45c03f4a3b39f8926e9768b9c9",
+    "prompts/collection-draft/R04.txt": "b5925971cb1bbc464e2524f6690a5b5c9a407c955b38d76c4605e29ea2343189",
+    "prompts/collection-draft/R05.txt": "f1eb39db8bb939cb7ebab2f4be5e9612614aa65886ada258e5def0ef42324d17",
+    "prompts/collection-draft/R06.txt": "2170d78b3522bc41dfd750a1a5e2c99dc62517ec28e1293b96c7843491bc5c9d"
+  },
+  "uncommitted_relevant_files_at_preparation": [
+    {
+      "path": "COLLECTION_PLAN.md",
+      "status": "new_untracked"
+    },
+    {
+      "path": "COLLECTION_READINESS.md",
+      "status": "new_untracked"
+    },
+    {
+      "path": "collection/COMMON_OUTPUT_CONTRACT.txt",
+      "status": "new_untracked"
+    },
+    {
+      "path": "collection/settings.pending.json",
+      "status": "new_untracked"
+    },
+    {
+      "path": "collection/slots.json",
+      "status": "new_untracked"
+    },
+    {
+      "path": "collection/protocol-manifest.json",
+      "status": "new_untracked"
+    },
+    {
+      "path": "collection/PROMPT_AUDIT.md",
+      "status": "new_untracked"
+    },
+    {
+      "path": "scripts/check_collection_protocol.py",
+      "status": "new_untracked"
+    },
+    {
+      "path": "prompts/collection-draft/R01.txt",
+      "status": "new_untracked_ignored"
+    },
+    {
+      "path": "prompts/collection-draft/R02.txt",
+      "status": "new_untracked_ignored"
+    },
+    {
+      "path": "prompts/collection-draft/R03.txt",
+      "status": "new_untracked_ignored"
+    },
+    {
+      "path": "prompts/collection-draft/R04.txt",
+      "status": "new_untracked_ignored"
+    },
+    {
+      "path": "prompts/collection-draft/R05.txt",
+      "status": "new_untracked_ignored"
+    },
+    {
+      "path": "prompts/collection-draft/R06.txt",
+      "status": "new_untracked_ignored"
+    }
+  ],
+  "note": "A preparation snapshot, not a freeze manifest. Readiness report and validation inventory are derived views; final version/settings/budget are unresolved.",
+  "publication_adjustment": {
+    "recorded_at": "2026-11-05T12:42:56.409331+01:00",
+    "description": "Replace six Markdown trailing-space line breaks in the readiness report with blank-line separators. Prompt bytes, scorer, fixtures and prior preparation evidence unchanged."
+  }
+}
