@@ -1,0 +1,26 @@
+{
+  "amendment_id": "continuation-v1",
+  "original_run": "results/collection/20261105T145211.528182Z",
+  "audit_run": "results/collection/20261105T145726.219088Z-audit",
+  "blocked_run": "results/collection/20261105T145320.571004Z",
+  "historical_report": "results/continuation-history/20261105T153413.832748Z/COLLECTION_RESULTS.md",
+  "preservation_inventory": "results/continuation-history/20261105T153413.832748Z/preserved-file-hashes.json",
+  "original_freeze_sha256": "88790091111afd85715e12cae754ccb956e70801559b58a1389be2c06751c4df",
+  "original_lock_sha256": "badbca52868f35728e2b507b1f5b93dbf948f98ed81c11a0e29d6a0c84874adf",
+  "allowed_slots": [
+    "R04-G02",
+    "R05-G02",
+    "R06-G02",
+    "R01-G03",
+    "R02-G03",
+    "R03-G03",
+    "R04-G03",
+    "R05-G03",
+    "R06-G03"
+  ],
+  "excluded_unknown_slot": "R03-G02",
+  "approved_budget_usd": "10.00",
+  "operational_ceiling_usd": "5.00",
+  "retries": 0,
+  "created_utc": "2026-11-05T15:34:14.403826+00:00"
+}
