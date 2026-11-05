@@ -1,0 +1,6 @@
+{
+  "error": {
+    "type": "synthetic_fixture_error",
+    "message": "Synthetic error; not a real API response."
+  }
+}

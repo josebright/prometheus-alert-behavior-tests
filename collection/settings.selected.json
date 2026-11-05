@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "provider": "OpenAI",
+  "model": "gpt-6.1-sol",
+  "model_identifier_kind": "alias",
+  "immutable_snapshot_verified": false,
+  "api_origin": "https://api.openai.com",
+  "generation_path": "/v1/responses",
+  "access_path": "/v1/models/gpt-6.1-sol",
+  "token_count_path": "/v1/responses/input_tokens",
+  "approved_budget_usd": "10.00",
+  "operational_ceiling_usd": "5.00",
+  "max_input_tokens_including_overhead": 6000,
+  "planned_slots": 18,
+  "request_timeout_seconds": 180,
+  "pacing_seconds": 1,
+  "retries": 0,
+  "pricing_review_max_age_hours": 24,
+  "request_fields": {
+    "model": "gpt-6.1-sol",
+    "reasoning": {
+      "effort": "medium",
+      "mode": "standard"
+    },
+    "max_output_tokens": 8192,
+    "stream": false,
+    "background": false,
+    "service_tier": "default",
+    "store": false,
+    "tools": [],
+    "tool_choice": "none",
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "truncation": "disabled",
+    "prompt_cache_options": {
+      "mode": "explicit"
+    }
+  },
+  "omitted_settings": {
+    "temperature": "Unsupported with medium reasoning; omitted, no invented effective value.",
+    "top_p": "Unsupported with medium reasoning; omitted.",
+    "top_logprobs/include_logprobs": "Unsupported with reasoning; omitted.",
+    "seed/stop": "No verified supported setting chosen; omitted, no determinism claim.",
+    "instructions/conversation/previous_response_id": "Absent: no researcher-added instructions or history.",
+    "reasoning.context": "Provider default; irrelevant to this single-turn fresh request; record returned value.",
+    "reasoning.summary": "Omitted; reasoning content is not extracted as answer text.",
+    "personality": "Omitted: model-owned default style.",
+    "prompt_cache_key/ttl/breakpoints": "No breakpoints; explicit mode disables caching. No prewarming.",
+    "metadata/user/safety_identifier": "Omitted; local slot ID supplied only as client-request correlation header, not prompt content.",
+    "parallel_tool_calls": "Omitted; tools empty and tool_choice none.",
+    "other_parameters": "Omitted; unknown returned fields retained in raw response, not assumed defaults."
+  },
+  "backup": "Independent local directory .collection-backups/<run-id>; same filesystem, not offsite.",
+  "authorization": "User explicitly approved up to US$10 and execution of existing 18 slots if preflight passes; internal ceiling US$5. No repeat budget approval needed."
+}

@@ -1,0 +1,285 @@
+{
+  "notice": "OFFLINE SYNTHETIC TRANSPORT FIXTURES. Not API calls, provider measurements, or experimental outputs. Synthetic usage values test accounting only.",
+  "controls": [
+    {
+      "id": "success",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/success.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": false,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "refusal",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/refusal.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "refusal_without_text",
+        "halt": false,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "truncation",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/truncation.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": false,
+        "cost": "0.08432"
+      }
+    },
+    {
+      "id": "empty_text",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/empty_text.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "empty_text",
+        "halt": false,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "missing_text",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/missing_text.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "missing_text",
+        "halt": false,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "absent_text_field",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/absent_text_field.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "missing_or_nontext_text_field",
+        "halt": false,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "unicode_multiblock",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/unicode_multiblock.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": false,
+        "cost": "0.0034",
+        "exact_text": "\ufeff\u03b1\r\n  \"{x}\"\\\nfinal\n"
+      }
+    },
+    {
+      "id": "reasoning_item_first",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/reasoning_item_first.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": false,
+        "cost": "0.0034",
+        "exact_text": "# Infrastructure validation only; not an LLM sample.\ngroups:\n  - name: R01\n    interval: 1m\n    rules:\n      - alert: ServiceErrorRatioHigh\n        expr: service_error_ratio > 0.05\n        for: 2m\n"
+      }
+    },
+    {
+      "id": "ambiguous_messages",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/ambiguous_messages.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "ambiguous_multiple_messages",
+        "halt": false,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "model_mismatch",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/model_mismatch.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": true,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "tier_mismatch",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/tier_mismatch.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": true,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "missing_usage",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/missing_usage.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "unknown_cache_usage",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/unknown_cache_usage.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "over_input_allowance",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/over_input_allowance.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "markdown_unchanged",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/markdown_unchanged.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": false,
+        "cost": "0.0034",
+        "exact_text": "```yaml\n# Infrastructure validation only; not an LLM sample.\ngroups:\n  - name: R01\n    interval: 1m\n    rules:\n      - alert: ServiceErrorRatioHigh\n        expr: service_error_ratio > 0.05\n        for: 2m\n```\n"
+      }
+    },
+    {
+      "id": "duplicate_success",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/duplicate_success.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": "available",
+        "halt": false,
+        "cost": "0.0034",
+        "exact_text": "# Infrastructure validation only; not an LLM sample.\ngroups:\n  - name: R01\n    interval: 1m\n    rules:\n      - alert: ServiceErrorRatioHigh\n        expr: service_error_ratio > 0.05\n        for: 2m\n"
+      }
+    },
+    {
+      "id": "authentication_error",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/authentication_error.body",
+      "http_status": 401,
+      "transport_error": null,
+      "expected": {
+        "text_status": null,
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "rate_limit",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/rate_limit.body",
+      "http_status": 429,
+      "transport_error": null,
+      "expected": {
+        "text_status": null,
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "server_error",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/server_error.body",
+      "http_status": 500,
+      "transport_error": null,
+      "expected": {
+        "text_status": null,
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "uncertain_partial",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/uncertain_partial.body",
+      "http_status": 200,
+      "transport_error": "TimeoutError",
+      "expected": {
+        "text_status": null,
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "uncertain_complete_body",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/uncertain_complete_body.body",
+      "http_status": 200,
+      "transport_error": "IncompleteRead",
+      "expected": {
+        "text_status": "available",
+        "halt": true,
+        "cost": "0.0034"
+      }
+    },
+    {
+      "id": "invalid_json",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/invalid_json.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": null,
+        "halt": true,
+        "cost": null
+      }
+    },
+    {
+      "id": "duplicate_json_keys",
+      "kind": "synthetic_transport_fixture",
+      "body": "controls/collection-adapter/duplicate_json_keys.body",
+      "http_status": 200,
+      "transport_error": null,
+      "expected": {
+        "text_status": null,
+        "halt": true,
+        "cost": null
+      }
+    }
+  ]
+}

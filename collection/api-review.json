@@ -1,0 +1,33 @@
+{
+  "reviewed_at": "2026-11-05T13:08:03.077402+01:00",
+  "timezone": "Africa/Lagos",
+  "review_status": "official_sources_verified",
+  "sources": {
+    "model": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "reasoning": "https://developers.openai.com/api/docs/guides/reasoning",
+    "counting": "https://developers.openai.com/api/docs/guides/token-counting",
+    "cache": "https://developers.openai.com/api/docs/guides/prompt-caching",
+    "supported_settings": "https://developers.openai.com/api/docs/guides/latest-model",
+    "responses_schema": "https://developers.openai.com/api/reference/cli/resources/responses/methods/create",
+    "model_access": "https://developers.openai.com/api/reference/resources/models/methods/retrieve",
+    "count_schema": "https://developers.openai.com/api/reference/python/resources/responses/subresources/input_tokens/methods/count"
+  },
+  "currency": "USD",
+  "rates_per_million": {
+    "uncached_input": "2.00",
+    "output_including_reasoning": "10.00",
+    "cached_input": "0.10",
+    "cache_write_30m": "2.50",
+    "cache_write_12h": "5.00"
+  },
+  "processing": "Standard, short context, global api.openai.com; no regional/fast/flex/batch/pro mode",
+  "cache_policy": "prompt_cache_options.mode=explicit with no breakpoints: caching disabled",
+  "output_cap_includes_reasoning_and_nonvisible_tokens": true,
+  "input_allowance_includes_structure_overhead": true,
+  "model_alias": "gpt-6.1-sol",
+  "immutable_snapshot": "Not verified: official model page lists only alias; never infer a dated snapshot.",
+  "per_slot_bound_usd": "0.09392",
+  "eighteen_slot_bound_usd": "1.69056",
+  "caveat": "API token-cost bound, not a billing statement; tax, credit purchases and unrelated account charges are outside this estimate. Halt if actual usage/pricing/configuration contradicts these assumptions."
+}

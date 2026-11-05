@@ -1,0 +1,39 @@
+{
+  "object": "response",
+  "id": "fixture-response",
+  "model": "gpt-6.1-sol",
+  "status": "completed",
+  "service_tier": "priority",
+  "max_output_tokens": 8192,
+  "store": false,
+  "reasoning": {
+    "effort": "medium",
+    "mode": "standard"
+  },
+  "tools": [],
+  "output": [
+    {
+      "type": "message",
+      "role": "assistant",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "# Infrastructure validation only; not an LLM sample.\ngroups:\n  - name: R01\n    interval: 1m\n    rules:\n      - alert: ServiceErrorRatioHigh\n        expr: service_error_ratio > 0.05\n        for: 2m\n"
+        }
+      ]
+    }
+  ],
+  "usage": {
+    "input_tokens": 1200,
+    "input_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "output_tokens": 100,
+    "output_tokens_details": {
+      "reasoning_tokens": 40
+    },
+    "total_tokens": 1300
+  }
+}
